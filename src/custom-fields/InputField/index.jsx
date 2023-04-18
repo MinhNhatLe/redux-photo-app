@@ -1,6 +1,7 @@
-import React from 'react';
+import { ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
-import { FormGroup, Input, Label } from 'reactstrap';
+import React from 'react';
+import { FormFeedback, FormGroup, Input, Label } from 'reactstrap';
 
 InputField.propTypes = {
     field: PropTypes.object.isRequired,
@@ -22,11 +23,17 @@ InputField.defaultProps = {
 function InputField(props) {
 
     const {
-        field,
+        field, form,
         type, label, placeholder, disabled } = props;
 
     // Trong field có 4 cái là name, values, onChange, Onblur
     const { name } = field;
+
+    const { errors, touched } = form;
+
+    // sẽ show khi click vào rồi blur ra ngoài
+    const showError = errors[name] && touched[name];
+
     return (
         <FormGroup>
             {label && <Label for={name}>{label}</Label>}
@@ -38,7 +45,13 @@ function InputField(props) {
                 type={type}
                 disabled={disabled}
                 placeholder={placeholder}
+
+                invalid={showError}
             />
+
+            {/* sử dụng compnent formik  có sẵn để ấy ErrorMessage ra 
+            sử dụng component reatstrap để ấy Formfeedback ra  */}
+            <ErrorMessage name={name} component={FormFeedback} />
         </FormGroup >
     );
 }
