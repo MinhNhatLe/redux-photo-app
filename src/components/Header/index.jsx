@@ -28,7 +28,7 @@ function Header() {
                             exact
                             className="header__link"
                             to="/photos"
-                            activeClassName="header_link--active"
+                            activeClassName="header__link--active"
                         >
                             Redux Project
                         </NavLink>
