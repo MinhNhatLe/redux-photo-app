@@ -1,6 +1,7 @@
 import { FastField, Form, Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React from 'react';
+import RandomPhotoField from '../../../../custom-fields/RandomPhotoField';
 import Select from 'react-select';
 import { Button, FormGroup, Input, Label } from 'reactstrap';
 import { PHOTO_CATEGORY_OPTIONS } from '../../../../constants/global';
@@ -24,6 +25,7 @@ function PhotoForm(props) {
     return (
         <Formik
             initialValues={initiaValues}
+            onSubmit={values => console.log('Submit: ', values)}
         >
             {formikProps => {
                 // do something here...s
@@ -64,17 +66,31 @@ function PhotoForm(props) {
                             options={PHOTO_CATEGORY_OPTIONS}
                         />
 
-                        <FormGroup>
+
+                        {/* ## Custom Field 
+
+- Cầu nối giữa UI control và Formik.
+- UI control là một controlled component với props: 
+    - name: tên xác định control
+    - value: giá trị của control
+    - onChange: trigger hàm này với giá trị mới khi có thay đổi
+    - onBlur: xác định khi nào thì control này bị touched */}
+                        <FastField
+                            name="photo"
+                            component={RandomPhotoField}
+                            label="Photo"
+                        />
+                        {/* <FormGroup>
                             <Label for="categoryId">Photo</Label>
 
                             <div><Button type="button" outline color="primary">Random a photo</Button></div>
                             <div>
                                 <img width="200px" height="200px" src={Images.COLORFUL_BG} alt="colorful background" />
                             </div>
-                        </FormGroup>
+                        </FormGroup> */}
 
                         <FormGroup>
-                            <Button color="primary">Add to album</Button>
+                            <Button type='submit' color="primary">Add to album</Button>
                         </FormGroup>
                     </Form>
                 )
