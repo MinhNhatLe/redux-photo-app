@@ -40,6 +40,7 @@ function InputField(props) {
 
             <Input
                 id={name}
+                // lấy hết: value, onChange, onBlur
                 {...field}
 
                 type={type}

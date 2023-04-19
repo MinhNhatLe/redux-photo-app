@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RandomPhotoField from '../../../../custom-fields/RandomPhotoField';
 import Select from 'react-select';
-import { Button, FormGroup, Input, Label } from 'reactstrap';
+import { Button, FormGroup, Input, Label, Spinner } from 'reactstrap';
 import { PHOTO_CATEGORY_OPTIONS } from '../../../../constants/global';
 import Images from '../../../../constants/images';
 import InputField from '../../../../custom-fields/InputField';
@@ -19,6 +19,7 @@ PhotoForm.defaultProps = {
 }
 
 function PhotoForm(props) {
+    const { isAddMode } = props;
     const initiaValues = {
         title: '',
         categoryId: null,
@@ -40,11 +41,11 @@ function PhotoForm(props) {
         <Formik
             initialValues={initiaValues}
             validationSchema={validationSchema}
-            onSubmit={values => console.log('Submit: ', values)}
+            onSubmit={props.onSubmit}
         >
             {formikProps => {
                 // do something here...s
-                const { values, errors, touched } = formikProps;
+                const { values, errors, touched, isSubmitting } = formikProps;
                 console.log({ values, errors, touched });
                 return (
                     <Form>
@@ -105,7 +106,10 @@ function PhotoForm(props) {
                         </FormGroup> */}
 
                         <FormGroup>
-                            <Button type='submit' color="primary">Add to album</Button>
+                            <Button type="submit" color={isAddMode ? 'primary' : 'success'}>
+                                {isSubmitting && <Spinner size="sm" />}
+                                {isAddMode ? 'Add to album' : 'Update your photo'}
+                            </Button>
                         </FormGroup>
                     </Form>
                 )
