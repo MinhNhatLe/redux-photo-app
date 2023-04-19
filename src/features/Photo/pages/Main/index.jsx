@@ -12,7 +12,11 @@ MainPage.propTypes = {};
 function MainPage(props) {
 
     const dispatch = useDispatch();
+
+    // lấy cái state trong photo ra dùng useSelector
     const photos = useSelector(state => state.photos);
+
+    // cần đi tới đâu thì dùng history
     const history = useHistory();
     // console.log('List of photos: ', photos);
 

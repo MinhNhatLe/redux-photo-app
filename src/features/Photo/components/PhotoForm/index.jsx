@@ -19,12 +19,9 @@ PhotoForm.defaultProps = {
 }
 
 function PhotoForm(props) {
-    const { isAddMode } = props;
-    const initiaValues = {
-        title: '',
-        categoryId: null,
-        photo: '',
-    };
+    const { isAddMode, initialValues } = props;
+
+
 
     const validationSchema = Yup.object().shape({
         title: Yup.string().required('This field is required'),
@@ -39,7 +36,7 @@ function PhotoForm(props) {
     })
     return (
         <Formik
-            initialValues={initiaValues}
+            initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={props.onSubmit}
         >
