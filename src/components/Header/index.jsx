@@ -35,6 +35,31 @@ function Header() {
                     </Col>
                 </Row>
             </Container>
+            {/* <div className='container'>
+                <div className='row justify-content-between'>
+                    <div className='col-lg-6'>
+                        <a
+                            className='header__link header__title'
+                            href="https://www.facebook.com/Nhat.sun.1005/"
+                            target='_blank'
+                            rel='nooperner noreferrer'
+                        >
+                            Nhật Lê
+                        </a>
+                    </div>
+
+                    <div className='col-lg-6'>
+                        <NavLink
+                            exact
+                            className="header__link"
+                            to="/photos"
+                            activeClassName="header__link--active"
+                        >
+                            Redux Project
+                        </NavLink>
+                    </div>
+                </div>
+            </div> */}
         </header >
     );
 }
